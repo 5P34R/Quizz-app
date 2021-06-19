@@ -14,3 +14,10 @@ class QuestionView(APIView):
 		return Response(
 			serializer.data
 			)
+
+	def post(self, request, format=None):
+		data = request.data 
+		serializer = QuestionSerializer(data=data)
+		if serializer.is_valid():
+			serializer.save()
+		return Response(serializer.data)
